@@ -14,13 +14,25 @@
             </div>
             <div class="right-children">
                 <a href="/user/sign-in">
-                    <span>login</span>
+                    <span>
+                        <% if (locals.user) { %>
+                            <%= user.name %>
+                        <% } else { %>
+                            login
+                        <%}%>
+                    </span>
                 </a>
             </div>
             <div class="right-children">
-                <a href="/user/sign-up">
-                    <span>sign up</span>
-                </a>
+                <% if (locals.user) { %>
+                    <a href="/user/sign-out">
+                        <span>sign out</span>
+                    </a>
+                <% }else{ %>
+                    <a href="/user/sign-up">
+                        <span>sign up</span>
+                    </a>
+                <% } %>
             </div>
         </div>
     </nav>

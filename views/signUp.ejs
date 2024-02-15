@@ -1,9 +1,10 @@
 <div class="sign-in">
     <h1>Sign Up</h1>
-    <form action="/create" method="get">
-        <input type="text" placeholder="Enter Name">
-        <input type="text" placeholder="Enter Email">
-        <input type="password" placeholder="Enter password">
+    <form action="/user/create" method="post">
+        <input type="text" name="name" placeholder="Enter Name">
+        <input type="text" name="email" placeholder="Enter Email">
+        <input type="password" name="password" placeholder="Enter password">
+        <input type="password" name="confirmPassword" placeholder="Re-enter password">
         <input type="submit" value="Register">
     </form>
 </div>
