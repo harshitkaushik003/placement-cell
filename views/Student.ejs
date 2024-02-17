@@ -10,6 +10,26 @@
         </a>
     </div>
     <div class="studentList">
-
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>College</th>
+                <th>status</th>
+                <th>View Profile</th>
+            </tr>
+            <% for( student of students ) { %>
+                    <tr>
+                        <td><%= student.name %></td>
+                        <td><%= student.details.college %></td>
+                        <td><%= student.details.status %></td>
+                        <td>
+                            <a href="/students/<%= student._id %>">
+                                <img src="https://cdn-icons-png.flaticon.com/128/12648/12648448.png" alt="">
+                            </a>
+                        </td>
+                       
+                    </tr>   
+            <% } %>
+        </table>
     </div>
 </div>

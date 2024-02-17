@@ -1,0 +1,49 @@
+@charset "UTF-8";
+.student-profile {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.student-profile h1 {
+  color: #333;
+  font-size: 2em;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.student-profile p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+.student-profile p:last-child {
+  margin-bottom: 20px;
+}
+.student-profile p span {
+  font-weight: bold;
+}
+.student-profile h2 {
+  color: #555;
+  font-size: 1.5em;
+  margin-top: 20px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+.student-profile ul {
+  list-style: none;
+  padding: 0;
+}
+.student-profile ul li {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+.student-profile ul li:before {
+  content: "•";
+  color: #ff6b6b;
+  font-size: 1.5em;
+  display: inline-block;
+  margin-right: 5px;
+}/*# sourceMappingURL=student_profile.css.map */

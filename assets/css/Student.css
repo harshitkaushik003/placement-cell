@@ -30,4 +30,37 @@
 .student-main .studentFormLink a:hover {
   color: #8C4843;
   letter-spacing: 5px;
+}
+.student-main .studentList {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.student-main .studentList table {
+  width: 100%;
+  border: 1px solid black;
+  border-bottom: none;
+}
+.student-main .studentList table tr {
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: center;
+  height: 50px;
+}
+.student-main .studentList table tr th {
+  border-bottom: 1px solid black;
+  font-size: 30px;
+  margin-bottom: 20px;
+  border-right: 1px solid;
+}
+.student-main .studentList table tr td {
+  font-size: 22px;
+  width: 25%;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+.student-main .studentList table tr td a img {
+  width: 50px;
+  height: 50px;
 }/*# sourceMappingURL=Student.css.map */

@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 const studentSchema = new mongoose.Schema({
     name: {type: String, required: true},
+    batch: {type: String, required: true},
     details: {
         college: String,
-        status: {type: String, enum: ["placed", "not_Placed"]}
+        status: {type: String}
     },
     scores : {
         dsa: Number,

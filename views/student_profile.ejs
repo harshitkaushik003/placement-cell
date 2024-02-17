@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/student_profile.css">
+<div class="student-profile">
+    <h1><%= student.name %>'s Profile</h1>
+    <p>Batch: <%= student.batch %></p>
+    <p>College: <%= student.details.college %></p>
+  
+    <h2>Scores</h2>
+    <ul>
+      <li>DSA: <%= student.scores.dsa %></li>
+      <li>Dev: <%= student.scores.dev %></li>
+      <li>React: <%= student.scores.react %></li>
+    </ul>
+</div>
+  
