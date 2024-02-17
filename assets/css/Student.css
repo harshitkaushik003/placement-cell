@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Spectral:wght@500&display=swap");
+.student-main {
+  display: flex;
+  flex-direction: column;
+  font-family: "Philosopher", sans-serif;
+}
+.student-main .heading {
+  text-align: center;
+}
+.student-main .heading h1 {
+  font-size: 50px;
+}
+.student-main .studentFormLink {
+  margin-left: 30px;
+}
+.student-main .studentFormLink a {
+  transition: 0.4s ease-in-out;
+  display: flex;
+}
+.student-main .studentFormLink a img {
+  width: 50px;
+  height: 50px;
+}
+.student-main .studentFormLink a span {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-size: 20px;
+  margin-left: 10px;
+}
+.student-main .studentFormLink a:hover {
+  color: #8C4843;
+  letter-spacing: 5px;
+}/*# sourceMappingURL=Student.css.map */

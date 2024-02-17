@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&family=Spectral:wght@500&display=swap");
 header {
   margin-bottom: 100px;
+  margin-top: 10px;
 }
 header nav {
   background-color: #8ACDEA;
@@ -54,7 +55,7 @@ header nav .right .right-children a img {
   margin-right: 10px;
 }
 header nav .right .right-children a span {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   transition: 0.4s ease-in-out;
 }
