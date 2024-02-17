@@ -1,22 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&family=Spectral:wght@500&display=swap");
+header {
+  margin-bottom: 100px;
+}
 header nav {
+  background-color: #8ACDEA;
   width: 100vw;
   height: 50px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px dotted black;
+  font-family: "Kode Mono", monospace;
+  box-shadow: 1px 1px 69px 73px #8ACDEA;
 }
 header nav .left {
   height: 100%;
-  width: 10%;
+  width: 15%;
+  cursor: pointer;
+}
+header nav .left a {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  margin-top: 5px;
 }
-header nav .left span {
+header nav .left a img {
+  height: 40px;
+  width: 40px;
+}
+header nav .left a span {
   font-size: 25px;
   font-weight: bolder;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 header nav .right {
   height: 100%;
@@ -30,6 +43,11 @@ header nav .right .right-children {
   justify-content: center;
   align-items: center;
 }
-header nav .right .right-children span {
+header nav .right .right-children a span {
   font-size: 20px;
+  font-weight: 500;
+  transition: 0.4s ease-in-out;
+}
+header nav .right .right-children a span:hover {
+  letter-spacing: 5px;
 }/*# sourceMappingURL=header.css.map */

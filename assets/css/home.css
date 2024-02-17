@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Anta&family=Kode+Mono:wght@400..700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Spectral:wght@500&display=swap");
+.home {
+  margin-top: 150px;
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Philosopher", sans-serif;
+}
+.home .heading {
+  text-align: center;
+}
+.home .heading h1 {
+  font-size: 40px;
+  font-weight: 500px;
+  letter-spacing: 5px;
+  color: #8C4843;
+}
+.home .credentials {
+  margin-top: 20px;
+}
+.home .credentials p {
+  font-size: 20px;
+  letter-spacing: 5px;
+  line-height: 40px;
+}/*# sourceMappingURL=home.css.map */
