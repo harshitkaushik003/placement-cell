@@ -1,8 +1,49 @@
 <link rel="stylesheet" href="/css/student_profile.css">
+<link rel="stylesheet" href="/css/interview.css">
 <div class="student-profile">
     <h1>Interview Details</h1>
     <p>Name: <%= interview.company %></p>
     <p>Date: <%= interview.date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); %></p>
-  
+</div>
+
+<div class="allocation">
+    <h2>Students in this interview</h2>
+    <form action="/interviews/<%= interview._id %>/result" method="post">
+        <% for( student of interview.students ) { %>
+            <div class="student-entry">
+                <input type="hidden" name="hidden-<%= student._id %>" value="<%= student._id %>">
+                <div class="entryCol">
+                    <input type="radio" name="radio-<%= student._id %>" id="" value="pass"> Pass
+                </div>
+                <div class="entryCol">
+                    <input type="radio" name="radio-<%= student._id %>" id="" value="fail"> Fail
+                </div>
+                <div class="entryCol"><%= student.name %></div>
+                <div class="entryCol"><%= student.batch %></div>
+                <div class="entryCol"><%= student.details.college %></div>
+            </div>
+        <% } %>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<div class="allocation">
+    <% if (students.length > 0) { %>
+        <h1>Allocate Students</h1>
+        <form action="/interviews/<%= interview._id %>/allocate" method="post">
+        <% for(student of students) { %>
+            <div class="student-entry">
+                <div class="entryCol">
+                    <input type="checkbox" name="checkbox-<%= student._id %>" id="" value="<%= student._id %>">
+                </div>
+                <div class="entryCol"><%= student.name %></div>
+                <div class="entryCol"><%= student.batch %></div>
+                <div class="entryCol"><%= student.details.college %></div>
+            </div>
+        <% } %>
+        <input type="submit" value="Submit">
+        </form>
+    <% } %>
+    
 </div>
   

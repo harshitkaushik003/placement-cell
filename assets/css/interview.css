@@ -1,0 +1,44 @@
+.allocation {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100vw;
+  height: auto;
+  padding: 10px 0px 10px 0px;
+}
+.allocation form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.allocation form .student-entry {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+}
+.allocation form .student-entry .entryCol {
+  height: 60px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+.allocation form .student-entry .entryCol input[type=checkbox] {
+  width: 20px;
+  height: 20px;
+}
+.allocation form input[type=submit] {
+  margin-top: 70px;
+  width: 400px;
+  height: 50px;
+  background-color: #746D75;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.allocation form input[type=submit]:hover {
+  background-color: rgba(116, 109, 117, 0.7450980392);
+}/*# sourceMappingURL=interview.css.map */
