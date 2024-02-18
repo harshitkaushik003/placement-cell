@@ -11,4 +11,11 @@
       <li>React: <%= student.scores.react %></li>
     </ul>
 </div>
+
+<div class="results">
+  <% for( result of results ) { %>
+    <%= result.interview.company %>
+    <%= result.result %>  
+  <% } %>
+</div>
   
