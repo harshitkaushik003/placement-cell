@@ -78,28 +78,44 @@ module.exports.details = async(req, res)=>{
     }
 }
 
-module.exports.allocate = async(req,res)=>{
+module.exports.allocate = async (req, res) => {
     try {
-        let interview = await Interview.findOne({_id: req.params.id});
-        if(!interview){
-            console.log("interview not found");
+        let interview = await Interview.findOne({ _id: req.params.id });
+
+        if (!interview) {
+            console.log("Interview not found");
             return res.redirect('back');
         }
-        Object.keys(req.body).forEach(key => {
-            if(key.startsWith('checkbox-')){
+
+        // Create an array to store promises
+        const savePromises = [];
+
+        for (const key of Object.keys(req.body)) {
+            if (key.startsWith('checkbox-')) {
                 console.log(key, req.body[key]);
+                let student = await Student.findOne({ _id: req.body[key] });
+                student.interviews.push(req.params.id);
                 interview.students.push(req.body[key]);
-                interview.save();
+
+                // Add save promises to the array
+                savePromises.push(student.save());
             }
-        })
+        }
+
+        // After all modifications, save the interview document once
+        savePromises.push(interview.save());
+
+        // Wait for all save operations to complete
+        await Promise.all(savePromises);
 
         return res.redirect('back');
-
     } catch (error) {
         console.log(`Error in interviews/allocate -> ${error}`);
         return res.redirect('back');
     }
-}
+};
+
+
 
 module.exports.result = async(req, res)=>{
     try {

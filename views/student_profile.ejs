@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/student_profile.css">
+<link rel="stylesheet" href="/css/result.css">
 <div class="student-profile">
     <h1><%= student.name %>'s Profile</h1>
     <p>Batch: <%= student.batch %></p>
@@ -12,10 +13,16 @@
     </ul>
 </div>
 
+
+
 <div class="results">
+  <h1>Results</h1>
   <% for( result of results ) { %>
-    <%= result.interview.company %>
-    <%= result.result %>  
+      <div class="result-details">
+          <span><%= result.interview.company %></span>
+          <span><%= result.result %></span>
+      </div>
   <% } %>
 </div>
+
   

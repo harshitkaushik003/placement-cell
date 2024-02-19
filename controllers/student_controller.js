@@ -1,5 +1,6 @@
 const Student = require("../models/student");
 const Result = require("../models/result");
+
 module.exports.home = async (req, res)=>{
     if(req.isAuthenticated()){
         try {
@@ -48,7 +49,7 @@ module.exports.profile = async function(req, res){
        try {
             let results = await Result.find({student: req.params.id}).populate('interview');
             let student = await Student.findOne({_id: req.params.id});
-            console.log(results);
+            // console.log(results);
             if(student){
                 return res.render('student_profile', {
                     title: "student profile",
@@ -66,3 +67,4 @@ module.exports.profile = async function(req, res){
         return res.redirect('/user/sign-in');
     }
 }
+
