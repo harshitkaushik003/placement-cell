@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/css/student_profile.css">
 <link rel="stylesheet" href="/css/interview.css">
+<link rel="stylesheet" href="/css/result.css">
 <div class="student-profile">
     <h1>Interview Details</h1>
     <p>Name: <%= interview.company %></p>
@@ -7,24 +8,27 @@
 </div>
 
 <div class="allocation">
-    <h2>Students in this interview</h2>
-    <form action="/interviews/<%= interview._id %>/result" method="post">
-        <% for( student of interview.students ) { %>
-            <div class="student-entry">
-                <input type="hidden" name="hidden-<%= student._id %>" value="<%= student._id %>">
-                <div class="entryCol">
-                    <input type="radio" name="radio-<%= student._id %>" id="" value="pass"> Pass
+    <% if (resultStudents.length > 0) { %>
+        <h2>Students in this interview</h2>
+        <form action="/interviews/<%= interview._id %>/result" method="post">
+            <% for( student of resultStudents ) { %>
+                <div class="student-entry">
+                    <input type="hidden" name="hidden-<%= student._id %>" value="<%= student._id %>">
+                    <div class="entryCol">
+                        <input type="radio" name="radio-<%= student._id %>" id="" value="pass"> Pass
+                    </div>
+                    <div class="entryCol">
+                        <input type="radio" name="radio-<%= student._id %>" id="" value="fail"> Fail
+                    </div>
+                    <div class="entryCol"><%= student.name %></div>
+                    <div class="entryCol"><%= student.batch %></div>
+                    <div class="entryCol"><%= student.details.college %></div>
                 </div>
-                <div class="entryCol">
-                    <input type="radio" name="radio-<%= student._id %>" id="" value="fail"> Fail
-                </div>
-                <div class="entryCol"><%= student.name %></div>
-                <div class="entryCol"><%= student.batch %></div>
-                <div class="entryCol"><%= student.details.college %></div>
-            </div>
-        <% } %>
-        <input type="submit" value="Submit">
-    </form>
+            <% } %>
+            <input type="submit" value="Submit">
+        </form>  
+    <% } %>
+    
 </div>
 
 <div class="allocation">
@@ -45,5 +49,17 @@
         </form>
     <% } %>
     
+</div>
+
+<div class="results">
+    <h1>Results</h1>
+    <% for( result of result ) { %>
+        <div class="result-details">
+            <span><%= result.student.name %></span>
+            <span><%= result.student.details.college %></span>
+            <span><%= result.student.batch %></span>
+            <span><%= result.result %></span>
+        </div>
+    <% } %>
 </div>
   

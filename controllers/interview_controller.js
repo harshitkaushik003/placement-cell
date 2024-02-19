@@ -41,22 +41,29 @@ module.exports.details = async(req, res)=>{
         if(req.isAuthenticated()){
             let students = await Student.find({});
             let interview = await Interview.findOne({ _id: req.params.id }).populate('students');
-            let students2 = [];
+            let result = await Result.find({interview: req.params.id}).populate('student');
+            let students2 = [], resStudents = [];
 
             // Extract _id values from interview.students array
             let interviewStudentIds = interview.students.map(student => student._id.toString());
+            let resultIds = result.map(item => item.student._id.toString());
+            console.log(interviewStudentIds, resultIds)
 
             // Filter students that are not in interview.students based on _id
-            let restStudents = students.filter(student => !interviewStudentIds.includes(student._id.toString()));
+            let restStudents = students.filter(student => !interviewStudentIds.includes(student._id.toString()) );
+            let resStudentRest = interview.students.filter(student => !resultIds.includes(student._id.toString()));
 
             // Push the filtered students to students2
             students2.push(...restStudents);
+            resStudents.push(...resStudentRest);
 
             if(interview){
                 return res.render('interview_details', {
                     title: "interview",
                     interview: interview,
-                    students: students2
+                    students: students2,
+                    result: result,
+                    resultStudents: resStudents
                 });
             }
             console.log("Interview not found");
@@ -106,7 +113,6 @@ module.exports.result = async(req, res)=>{
                     result = req.body[resultKey]
                 }
                 if(student && result){
-                    console.log(student, result);
                     try {
                         let resultMain = await Result.create({
                             student: student,
