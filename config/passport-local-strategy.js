@@ -1,8 +1,12 @@
+// requiring library 
 const passport = require('passport');
+// creating local strategy instance 
 const LocalStrategy = require('passport-local').Strategy;
 
+// fetching user 
 const User = require('../models/user');
 
+//authentication
 passport.use(new LocalStrategy({usernameField: 'email'}, async function(email, password, done){
     try {
         let user = await User.findOne({email: email});
@@ -17,10 +21,12 @@ passport.use(new LocalStrategy({usernameField: 'email'}, async function(email, p
     }
 }));
 
+// serializing the user - saving id into cookie
 passport.serializeUser((user, done)=>{
     return done(null, user.id);
 })
 
+// deserializing the user by id 
 passport.deserializeUser(async (id, done)=>{
     try {
         let user = await User.findById(id);
@@ -33,6 +39,7 @@ passport.deserializeUser(async (id, done)=>{
     }
 })
 
+// function to check whether someone has signed in
 passport.checkAuthentication = (req, res, next)=>{
     if(req.isAuthenticated()){
         return next();
@@ -40,6 +47,7 @@ passport.checkAuthentication = (req, res, next)=>{
     return res.redirect('/user/sign-in');
 }
 
+// setting current logged in user 
 passport.setAuthenticatedUser = (req, res, next)=>{
     if(req.isAuthenticated()){
         res.locals.user = req.user;

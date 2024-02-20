@@ -1,13 +1,19 @@
+//importing schema 
 const Result = require("../models/result");
 const Student = require("../models/student");
+
+//csv writer for handling csv files
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+
+//modules for files
 const fs = require('fs');
-const { result } = require("./interview_controller");
+// const { result } = require("./interview_controller");
 
 module.exports.downloadCsv = async (req, res)=>{
     let students = await Student.find({}).populate('interviews');
     let results = await Result.find({}).populate('interview');
-    // console.log(results);
+   
+    // header for csv files
     const csvHeader = [
         {id: "id", title: "ID"},
         {id: "name", title: "Name"},
@@ -20,26 +26,30 @@ module.exports.downloadCsv = async (req, res)=>{
         {id: "results", title: "Results"}
     ]
 
+    // this array will store the data 
     const data = [];
 
+    // creating data for each student in the database 
     students.forEach((student)=>{
+        // arrays for interviews and results 
         let interviews = [];
-        let resultsFinal = []
+        let resultsFinal = [];
         let studentResults = results.filter(result => result.student.toString() === student._id.toString());
-        // console.log("s results", studentResults);
+        
+        // setting up interviews and results arrays
         studentResults.forEach(item=>{
             resultsFinal.push({
                 company: item.interview.company,
                 result: item.result
             })
         })
-        console.log("result-> ", resultsFinal);
+        
         student.interviews.forEach((item)=>{
             
             interviews.push({name: item.company, date: item.date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })});
         })
-        // console.log(interviews);
-
+        
+        // setting up the data 
         data.push({
             id: student.id,
             name: student.name,
@@ -54,11 +64,14 @@ module.exports.downloadCsv = async (req, res)=>{
         })
 
     })
+
+    // creating csv writer 
     const csvWriter = createCsvWriter({
         path: `students-details.csv`,
         header: csvHeader
     })
 
+    // generating file 
     csvWriter.writeRecords(data)
     .then(()=>{
         console.log("csv generated successfully");
@@ -66,7 +79,7 @@ module.exports.downloadCsv = async (req, res)=>{
         res.setHeader('Content-Type', 'text/csv');
         res.setHeader('Content-Disposition', 'attachment; filename=output.csv');
 
-        // Send the CSV file as the response
+        // Sending the CSV file as the response
         res.sendFile(`students-details.csv`, { root: __dirname });
 
         return res.redirect('back');

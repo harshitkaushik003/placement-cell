@@ -1,6 +1,7 @@
 const Student = require("../models/student");
 const Result = require("../models/result");
 
+//rendering main student page
 module.exports.home = async (req, res)=>{
     if(req.isAuthenticated()){
         try {
@@ -13,6 +14,7 @@ module.exports.home = async (req, res)=>{
     return res.redirect('/user/sign-in')
 };
 
+// rendering form for adding a student data 
 module.exports.form = (req, res)=>{
     if(req.isAuthenticated()){
         return res.render('student_form', {title: "student form"});
@@ -20,8 +22,10 @@ module.exports.form = (req, res)=>{
     return res.redirect('/user/sign-in')
 }
 
+// creating a new student 
 module.exports.create = async (req, res)=>{
     try {
+        // these values comes from the form 
         let student = await Student.create({
             name: req.body.name,
             batch: req.body.batch,
@@ -35,6 +39,7 @@ module.exports.create = async (req, res)=>{
                 react: req.body.react
             }
         });
+        // printing a success message 
         console.log(`Student created --> ${student}`);
         return res.redirect('/students');
 
@@ -47,9 +52,10 @@ module.exports.create = async (req, res)=>{
 module.exports.profile = async function(req, res){
     if(req.isAuthenticated()){
        try {
+            // fetching resukts and student details 
             let results = await Result.find({student: req.params.id}).populate('interview');
             let student = await Student.findOne({_id: req.params.id});
-            // console.log(results);
+            
             if(student){
                 return res.render('student_profile', {
                     title: "student profile",

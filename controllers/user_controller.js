@@ -1,11 +1,13 @@
 const User = require("../models/user");
-
+//controllers for managing authentication
 module.exports = {
+    // profile page 
     profile: (req, res)=>{
         return res.render('profile', {
             title: "profile"
         })
     },
+    //renderign sign in page
     signIn: (req, res)=>{
         if(req.isAuthenticated()){
             return res.redirect('/user/profile');
@@ -14,6 +16,7 @@ module.exports = {
             title: "sign-in"
         });
     },
+    // rendering sign up page 
     signUp: (req, res)=>{
         if(req.isAuthenticated()){
             return res.redirect('/user/profile');
@@ -23,6 +26,7 @@ module.exports = {
             title: "sign-up"
         })
     },
+    // registering a user 
     create: async (req, res)=>{
         console.log(req.body);
         try {
@@ -43,9 +47,11 @@ module.exports = {
             return res.redirect('back');
         }
     },
+    // redirecting to homepage on successfull session creation
     createSession: (req, res)=>{
         return res.redirect('/');
     },
+    // logging out 
     signOut: (req, res, next)=>{
         req.logout(function(err){
             if(err){
